@@ -22,7 +22,7 @@ tests_require = [
     ]
 
 setup(name='quippy_wat',
-      version='0.0',
+      version='1.0',
       description='quippy_wat',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
@@ -31,9 +31,9 @@ setup(name='quippy_wat',
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
       ],
-      author='',
-      author_email='',
-      url='',
+      author='Dennis Mojado',
+      author_email='denmojo@gmail.com',
+      url='https://github.com/denmojo/potential-dollop',
       keywords='web pyramid pylons',
       packages=find_packages(),
       include_package_data=True,

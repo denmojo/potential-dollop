@@ -25,6 +25,7 @@ class Quip(Base):
     quipped_text = Column(Text)
     source = Column(Text)
     submitter = Column(Text)
+    votes = Column(Integer, default=0)
     source_date = Column(DateTime, default=datetime.datetime.utcnow)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
      

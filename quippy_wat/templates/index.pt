@@ -2,7 +2,10 @@
 <head>
 	<title>Quippy WAT</title>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-	<script type="text/javascript" src="${request.static_url('quippy_wat:static/jquery-3.1.1.min.js')}"></script>
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
 	<script
 	  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
 	  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
@@ -27,10 +30,10 @@
 	<p>Store your out-of-context quips for later shaming.</p>
 	<form method="POST" action="/newquip">
 		<p>Quip:<br/>
-		<textarea cols="50" id="quipped_text" name="quipped_text" rows="7" required ></textarea></p>
-		<p>Source:&nbsp;&nbsp;&nbsp;&nbsp; <input id="source" name="source" size="42" type="text" required /></p>
-		<p>Date uttered: <input type="text" id="datepicker" name="source_date" size="39" required /></p>
-		<p>Submitter: <input id="submitter" name="submitter" size="42" type="text" required /></p>
+		<textarea cols="40" id="quipped_text" name="quipped_text" rows="5" required ></textarea></p>
+		<p>Source:&nbsp;&nbsp;&nbsp;&nbsp; <input id="source" name="source" size="32" type="text" required /></p>
+		<p>Date uttered: <input type="text" id="datepicker" name="source_date" size="29" required /></p>
+		<p>Submitter: <input id="submitter" name="submitter" size="32" type="text" required /></p>
 		<input type="submit" value="Post" />
 	</form>
 	<h2>Quips</h2>

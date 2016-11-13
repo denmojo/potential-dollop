@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Quippy WAT</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="${request.static_url('quippy_wat:static/jquery-3.1.1.min.js')}"></script>
 	<script
 	  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
@@ -28,6 +29,7 @@
 		<p>Quip:<br/>
 		<textarea cols="50" id="quipped_text" name="quipped_text" rows="7" required ></textarea></p>
 		<p>Source:&nbsp;&nbsp;&nbsp;&nbsp; <input id="source" name="source" size="42" type="text" required /></p>
+		<p>Date uttered: <input type="text" id="datepicker" name="source_date" size="39" required /></p>
 		<p>Submitter: <input id="submitter" name="submitter" size="42" type="text" required /></p>
 		<input type="submit" value="Post" />
 	</form>
@@ -36,7 +38,7 @@
 	<div tal:condition="quips">
 		<ul>
 			<div tal:repeat="quip quips" tal:omit-tag="">
-				<li tal:content="string:${quip.quipped_text} - ${quip.source}, ${quip.source_date}"/>
+				<li tal:content="string:${quip.quipped_text} - ${quip.source}, ${quip.source_date.strftime('%b %d, %Y')}"/>
 			</div>
 		</ul>
 	</div>

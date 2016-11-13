@@ -24,7 +24,14 @@
 <body>
 	<h1>What did you say??</h1>
 	<p>Store your out-of-context quips for later shaming.</p>
-
+	<form method="POST" action="/newquip">
+		<p>Quip:<br/>
+		<textarea cols="50" id="quipped_text" name="quipped_text" rows="7" required ></textarea></p>
+		<p>Source:&nbsp;&nbsp;&nbsp;&nbsp; <input id="source" name="source" size="42" type="text" required /></p>
+		<p>Submitter: <input id="submitter" name="submitter" size="42" type="text" required /></p>
+		<input type="submit" value="Post" />
+	</form>
+	<h2>Quips</h2>
 	<!-- quippy_wat/templates/index.pt -->
 	<div tal:condition="quips">
 		<ul>
@@ -36,11 +43,4 @@
 	<div tal:condition="not:quips">
 		<em>Nobody posted any quips yet! So BORING!</em><br/><br/>
 	</div>
-	<form method="POST" action="/newquip">
-		<p>Quip:<br/>
-		<textarea cols="50" id="quipped_text" name="quipped_text" rows="7" required ></textarea></p>
-		<p>Source:&nbsp;&nbsp;&nbsp;&nbsp; <input id="source" name="source" size="42" type="text" required /></p>
-		<p>Submitter: <input id="submitter" name="submitter" size="42" type="text" required /></p>
-		<input type="submit" value="Post" />
-	</form>
 	</html>

@@ -20,7 +20,7 @@ def my_view(request):
 @view_config(route_name='home',
              renderer='templates/index.pt')
 def home(request):
-    quips = DBSession.query(Quip).all()
+    quips = DBSession.query(Quip).order_by(Quip.created_date.desc()).all()
     form = Form(request, schema=QuipSchema())
     return {'quips': quips, 'form': FormRenderer(form)}
 

@@ -1,0 +1,48 @@
+<html>
+<head>
+	<script type="text/javascript" src="${request.static_url('quippy_wat:static/jquery-3.1.1.min.js')}"></script>
+	<script
+	  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+	  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+	  crossorigin="anonymous"></script>
+		
+	<script>
+	  $( function() {
+	    $( "#datepicker" ).datepicker();
+	  } );
+	  </script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- style -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<title>Quippy WAT</title>
+<h2>What did you say??</h2>
+
+<p>Store your out-of-context quips for later shaming.</p>
+
+<!-- quippy_wat/templates/index.pt -->
+<div tal:condition="quips">
+  <ul>
+    <div tal:repeat="quip quips" tal:omit-tag="">
+      <li tal:content="string:${quip.quipped_text} - ${quip.source}, ${quip.source_date}"/>
+    </div>
+  </ul>
+</div>
+<div tal:condition="not:quips">
+  <em>Nobody posted any quips yet! So BORING!</em><br/><br/>
+</div>
+
+<b>What did you say??</b><br/><br/>
+
+<form method="POST" action="/newquip">
+	Quip<br/>
+  <textarea cols="50" id="quipped_text" name="quipped_text" rows="7" required ></textarea>
+  <br/>
+  Source: <input id="source" name="source" size="40" type="text" required />
+  <br/>
+	Submitter: <input id="submitter" name="submitter" size="40" type="text" required />
+  <input type="submit" value="Post" />
+</form>
+</html>

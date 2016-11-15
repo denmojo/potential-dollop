@@ -26,5 +26,5 @@ class FunctionalTests(unittest.TestCase):
         self.testapp = TestApp(app)
 
     def test_root(self):
-        res = self.testapp.get('/', status=200)
-        self.assertTrue(b'Quippy-Wat' in res.body)
+        res = self.testapp.get('/quips', status=200)
+        self.assertTrue(b'Quips' in res.body)

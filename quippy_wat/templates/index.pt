@@ -7,12 +7,15 @@
 	</script>
 	<script
 	  src="${request.static_url('quippy_wat:static/jquery-ui-1.12.0.min.js')}">
-	</script>		
+	</script>
+	<script
+		src="${request.static_url('quippy_wat:static/jquery.autocomplete.js')}">
+	</script>
 	<script>
 	  $( function() {
 	    $( "#datepicker" ).datepicker();
 	  } );
-	  </script>
+	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- style -->
@@ -49,7 +52,15 @@
 		<em>Nobody posted any quips yet! So BORING!</em><br/><br/>
 	</div>
 	<div id='sort_options'>
-	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a>
+	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a><br/><br/>
+	<p><input type="text" name="autocomplete" id="autocomplete" placeholder="Search" size="50"/></p>
 	</div>
-	
+	<script>
+		$('#autocomplete').autocomplete({
+		    serviceUrl: '/quips/autocomplete',
+		    onSelect: function (suggestion) {
+					
+		    }
+		});
+	</script>
 	</html>

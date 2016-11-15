@@ -15,9 +15,9 @@ def main(global_config, **settings):
     Base.metadata.bind = engine
     config = Configurator(settings=settings)
     config.include('pyramid_chameleon')
-    config.add_static_view('static', 'static', cache_max_age=3600)
+    config.add_static_view('quips/static', 'static', cache_max_age=3600)
     config.add_route('my_view', '/')
     config.add_route('home', '/quips')
-    config.add_route('newquip', '/newquip')
+    config.add_route('newquip', '/quips/newquip')
     config.scan()
     return config.make_wsgi_app()

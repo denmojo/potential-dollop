@@ -23,20 +23,7 @@
 	</style>
 </head>
 <body>
-	<h1><a href="/quips">lolwat??</a></h1>
-	<p>Store your out-of-context quips for later shaming.</p>
-	<form method="POST" action="/quips/newquip">
-		<label for="quipped_text">Quip:</label><br/>
-		<textarea cols="40" id="quipped_text" name="quipped_text" rows="5" required ></textarea><br/>
-		<label for="source">Source:</label><br/>
-		<input id="source" name="source" size="32" type="text" required /><br/>
-		<label for="datepicker">Date uttered:</label><br/>
-		<input type="text" id="datepicker" name="source_date" size="32" required /><br/>
-		<label for="submitter">Submitter</label><br/>
-		<input id="submitter" name="submitter" size="32" type="text" required /><br/><br/>
-		<input type="submit" value="Post Quip" />
-	</form>
-	<h2>Quips</h2>
+	<h1>	<h1><a href="/quips">lolwat??</a></h1></h1>
 	<!-- quippy_wat/templates/index.pt -->
 	<div tal:condition="quips">
 		<ul>
@@ -48,8 +35,4 @@
 	<div tal:condition="not:quips">
 		<em>Nobody posted any quips yet! So BORING!</em><br/><br/>
 	</div>
-	<div id='sort_options'>
-	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a>
-	</div>
-	
 	</html>

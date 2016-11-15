@@ -29,7 +29,7 @@ def home(request):
 @view_config(route_name='newquip',
              renderer='templates/index.pt',
              request_method='POST')
-def newlunch(request):
+def newquip(request):
     form = Form(request, schema=QuipSchema())
     if not form.validate:
         raise exc.HTTPBadRequest
@@ -48,4 +48,14 @@ def newlunch(request):
         DBSession.add(q)
 
     raise exc.HTTPSeeOther('/quips')
+
+@view_config(route_name='sorted',
+             renderer='templates/sorted.pt')
+def sorted(request):
+    key = request.params['q']
+    if key == 'oldest':
+        quips = DBSession.query(Quip).order_by(Quip.source_date.asc()).all()
+    else:
+        quips = DBSession.query(Quip).order_by(Quip.source_date.desc()).all()
+    return{'quips': quips}
 

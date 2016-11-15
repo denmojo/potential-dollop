@@ -26,6 +26,9 @@
 	</style>
 </head>
 <body>
+	<div id="search_autocomplete" align="right">
+		<p><input type="text" name="autocomplete" id="autocomplete" placeholder="Search" size="40"/></p>
+	</div>
 	<h1><a href="/quips">lolwat??</a></h1>
 	<p>Store your out-of-context quips for later shaming.</p>
 	<form method="POST" action="/quips/newquip">
@@ -53,7 +56,6 @@
 	</div>
 	<div id='sort_options'>
 	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a><br/><br/>
-	<p><input type="text" name="autocomplete" id="autocomplete" placeholder="Search" size="50"/></p>
 	</div>
 	<script>
 		$('#autocomplete').autocomplete({

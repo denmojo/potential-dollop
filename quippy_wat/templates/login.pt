@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+	<!-- style -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<style>
+	body {padding: 0 40px;}
+	</style>
+</head>
+<body>
+<h1>Login</h1>
+<span tal:replace="message"/>
+
+<form action="${url}" method="post">
+    <input type="hidden" name="came_from"
+           value="${came_from}"/>
+    <label for="login">Username</label><br/>
+    <input type="text" id="login"
+           name="login"
+           value="${login}"/><br/>
+    <label for="password">Password</label><br/>
+    <input type="password" id="password"
+           name="password"
+           value="${password}"/><br/>
+    <input type="submit" name="form.submitted"
+           value="Log In"/>
+</form>
+</body>
+</html>

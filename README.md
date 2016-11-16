@@ -18,3 +18,12 @@ pserve development.ini
 
 # go to http://localhost:6543/quips
 ```
+
+## Notes
+Reference examples of:
+* Display sorted by quip date
+* AJAX Smart search using JQuery Autocomplete
+* Login Authentication
+  * bcrypt password hashing at /quips/create_account
+* Database table initialization using initializedb.py
+* Nginx proxy settings in .ini config for url generation that preserves proxy's protocol (e.g. https on external proxy)

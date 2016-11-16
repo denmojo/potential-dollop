@@ -57,6 +57,14 @@
 	<div id='sort_options'>
 	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a><br/><br/>
 	</div>
+	
+	<div>${logged_in}
+	    <a tal:condition="logged_in is None"
+	            href="${request.application_url}/quips/login">Log In</a>
+	    <a tal:condition="logged_in is not None"
+	            href="${request.application_url}/quips/logout">Logout</a>
+	</div>
+	
 	<script>
 		$('#autocomplete').autocomplete({
 		    serviceUrl: '/quips/autocomplete',

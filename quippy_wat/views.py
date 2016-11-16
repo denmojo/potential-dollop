@@ -58,4 +58,22 @@ def sorted(request):
     else:
         quips = DBSession.query(Quip).order_by(Quip.source_date.desc()).all()
     return{'quips': quips}
+    
+@view_config(route_name='quip_autocomplete',
+             renderer='json')
+def quip_autocomplete(request):
+    if 'query' not in request.params:
+        abort(400)
+    fragment = request.params['query']
+    keywords = fragment.split()
+    searchstring = "%%".join(keywords)
+    searchstring = '%%%s%%' %(searchstring)
+    try:
+        ac_q = DBSession.query(Quip)
+        res = ac_q.filter(Quip.quipped_text.ilike(searchstring)).limit(10)
+        return dict(query=fragment,
+                suggestions=[r.quipped_text for r in res],
+                data=["%s" %(r.quipped_text) for r in res])
+    except NoResultFound:
+        return dict(query=fragment, suggestions=[], data=[])
 

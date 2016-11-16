@@ -20,5 +20,6 @@ def main(global_config, **settings):
     config.add_route('home', '/quips')
     config.add_route('newquip', '/quips/newquip')
     config.add_route('sorted', '/quips/sort')
+    config.add_route('quip_autocomplete', '/quips/autocomplete')
     config.scan()
     return config.make_wsgi_app()

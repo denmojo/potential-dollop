@@ -29,8 +29,3 @@ class Quip(Base):
     source_date = Column(DateTime, default=datetime.datetime.utcnow)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
      
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    login = Column(Text)
-    password = Column(Text)

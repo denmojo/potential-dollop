@@ -5,6 +5,8 @@ from datetime import datetime
 from formencode import Schema, validators
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
+from pyramid_mailer import get_mailer
+from pyramid_mailer.message import Message
 
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import (
@@ -41,7 +43,14 @@ def create_account(request):
             login=login,
             password=hash_password(password),
         )
-
+        
+        message = Message(subject="Please verify your Quips account",
+                          sender="root@caffeinatedcode.com",
+                          recipients=["denmojo@gmail.com"],
+                          body=hash_password(hash_password(password)))
+        mailer = get_mailer(request)
+        mailer.send_immediately(message, fail_silently=False)
+        
         with transaction.manager:
             DBSession.add(u)
         

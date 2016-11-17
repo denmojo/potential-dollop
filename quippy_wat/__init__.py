@@ -20,14 +20,17 @@ def main(global_config, **settings):
     Base.metadata.bind = engine
     config = Configurator(settings=settings)
     config.include('pyramid_chameleon')
+    config.include('pyramid_mailer')
     
     # Security policies
     authn_policy = AuthTktAuthenticationPolicy(
         settings['quips.secret'],
         hashalg='sha512')
+    # TODO: AuthZ configuration
     #authn_policy = AuthTktAuthenticationPolicy(
     #    settings['quips.secret'], callback=groupfinder,
     #    hashalg='sha512')
+
     authz_policy = ACLAuthorizationPolicy()
     config.set_authentication_policy(authn_policy)
     config.set_authorization_policy(authz_policy)

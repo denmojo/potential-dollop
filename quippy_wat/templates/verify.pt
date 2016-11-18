@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quippy WAT Create Account</title>
+	<!-- style -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<style>
+	body {padding: 0 40px;}
+	</style>
+</head>
+<body>
+<h1>Verification</h1>
+
+${message}
+</body>
+</html>

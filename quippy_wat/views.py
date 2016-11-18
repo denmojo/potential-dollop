@@ -1,6 +1,8 @@
 from pyramid.view import view_config
 import transaction
 import pyramid.httpexceptions as exc
+import urllib.parse as parser
+import zope.sqlalchemy
 from datetime import datetime
 from formencode import Schema, validators
 from pyramid_simpleform import Form
@@ -37,20 +39,32 @@ class QuipSchema(Schema):
 def create_account(request):
     logged_in = request.authenticated_userid
     if 'form.submitted' in request.params:
+        email = request.params['email']
         login = request.params['login']
         password = request.params['password']
-        u = User(
-            login=login,
-            password=hash_password(password),
-        )
+        hashed_password = hash_password(password)
+        urlencoded_hash = hash_password(hashed_password)
+        
+        usercheck = DBSession.query(User).filter(User.login == login).first()
+        if usercheck:
+            return {'message': "Login exists"}
         
         message = Message(subject="Please verify your Quips account",
                           sender="root@caffeinatedcode.com",
                           recipients=["denmojo@gmail.com"],
-                          body=hash_password(hash_password(password)))
+                          body="Please go to: " + request.application_url +
+                              "/quips/verify_account?q=" +
+                              parser.quote(urlencoded_hash))
         mailer = get_mailer(request)
         mailer.send_immediately(message, fail_silently=False)
         
+        u = User(
+            email=email,
+            login=login,
+            password=hashed_password,
+            enabled=0,
+            verification=urlencoded_hash
+        )
         with transaction.manager:
             DBSession.add(u)
         
@@ -72,7 +86,8 @@ def login(request):
     if 'form.submitted' in request.params:
         login = request.params['login']
         password = request.params['password']
-        if check_password(password, DBSession.query(User).filter(User.login == login).first().password):
+        logging_in_user = DBSession.query(User).filter(User.login == login).first()
+        if check_password(password, logging_in_user.password) and logging_in_user.enabled == 1:
         #if check_password(password, USERS.get(login)):
             headers = remember(request, login)
             return HTTPFound(location=came_from,
@@ -161,3 +176,18 @@ def quip_autocomplete(request):
     except NoResultFound:
         return dict(query=fragment, suggestions=[], data=[])
 
+@view_config(route_name='verify_account',
+             renderer='templates/verify.pt')
+def verify_account(request):
+    if 'q' not in request.params:
+        return{'message': 'Nothing to verify!'}
+        
+    urlencoded_hash = request.params['q']
+    hash = parser.unquote(urlencoded_hash)
+    user1 = DBSession.query(User).filter(User.verification == hash).first()
+    
+    if user1:
+        DBSession.query(User).filter(User.verification == hash).update({"enabled": 1})
+        return {'message': 'Congratulations, your account is now active.'}
+    
+    return {'message': 'Verification failed.'}

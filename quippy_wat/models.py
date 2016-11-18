@@ -34,3 +34,6 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     login = Column(Text)
     password = Column(Text)
+    email = Column(Text)
+    enabled = Column(Integer)
+    verification = Column(Text)

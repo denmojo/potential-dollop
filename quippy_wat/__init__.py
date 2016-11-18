@@ -44,5 +44,6 @@ def main(global_config, **settings):
     config.add_route('newquip', '/quips/newquip')
     config.add_route('sorted', '/quips/sort')
     config.add_route('quip_autocomplete', '/quips/autocomplete')
+    config.add_route('verify_account', '/quips/verify_account')
     config.scan()
     return config.make_wsgi_app()

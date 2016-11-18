@@ -12,13 +12,17 @@
 <body>
 <h1>Login</h1>
 
+<div tal:condition="exists: message">${message}</div>
 <form action="create_account" method="post">
+    <label for="login">Email</label><br/>
+    <input type="text" id="email"
+           name="email" required /><br/>
     <label for="login">Username</label><br/>
     <input type="text" id="login"
-           name="login"/><br/>
+           name="login" required /><br/>
     <label for="password">Password</label><br/>
     <input type="password" id="password"
-           name="password"/><br/>
+           name="password" required /><br/>
     <input type="submit" name="form.submitted"
            value="Create"/>
 </form>

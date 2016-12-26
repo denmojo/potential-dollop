@@ -1,6 +1,6 @@
 ## Prerequisites
 sqlite3
-python3
+python2.7 (or 3 with corrections to default packages)
 
 Run `pip install -r requirements.txt` to get dependencies.
 
@@ -18,3 +18,5 @@ pserve development.ini
 
 # go to http://localhost:6543/quips
 ```
+
+The root level of the url is not used.

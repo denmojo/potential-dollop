@@ -44,16 +44,18 @@
 	</form>
 	<h2>Quips</h2>
 	<!-- quippy_wat/templates/index.pt -->
-	<div tal:condition="quips">
+	<div tal:condition="paginator.items">
 		<ul>
-			<div tal:repeat="quip quips" tal:omit-tag="">
-				<li tal:content="string:${quip.quipped_text} - ${quip.source}, ${quip.source_date.strftime('%b %d, %Y')}"/>
+			<div tal:repeat="entry paginator.items" tal:omit-tag="">
+				<li tal:content="string:${entry.source}, ${entry.source_date.strftime('%b %d, %Y')}"/>
+				<pre style="white-space: pre-wrap;" tal:content="string:${entry.quipped_text}"></pre>
 			</div>
 		</ul>
 	</div>
-	<div tal:condition="not:quips">
+	<div tal:condition="not:paginator.items">
 		<em>Nobody posted any quips yet! So BORING!</em><br/><br/>
 	</div>
+	Page: <span tal:replace="structure paginator.pager()" />
 	<div id='sort_options'>
 	<a href="/quips/sort?q=newest" id="sort_newest">Newest</a>&nbsp;|&nbsp;<a href="/quips/sort?q=oldest" id="sort_oldest">Oldest</a><br/><br/>
 	</div>

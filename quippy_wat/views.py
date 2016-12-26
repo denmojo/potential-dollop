@@ -1,6 +1,7 @@
 from pyramid.view import view_config
 import transaction
 import pyramid.httpexceptions as exc
+from services.record import RecordService
 from datetime import datetime
 from formencode import Schema, validators
 from pyramid_simpleform import Form
@@ -21,9 +22,11 @@ def my_view(request):
 @view_config(route_name='home',
              renderer='templates/index.pt')
 def home(request):
-    quips = DBSession.query(Quip).order_by(Quip.created_date.desc()).all()
+    page = int(request.params.get('page', 1))
+    paginator = RecordService.get_paginator(request, page)
+#    quips = DBSession.query(Quip).order_by(Quip.created_date.desc()).all()
     form = Form(request, schema=QuipSchema())
-    return {'quips': quips, 'form': FormRenderer(form)}
+    return {'paginator': paginator, 'page':page, 'form': FormRenderer(form)}
 
 
 @view_config(route_name='newquip',
